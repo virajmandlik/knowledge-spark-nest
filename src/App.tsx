@@ -15,6 +15,11 @@ import Courses from "./pages/dashboard/Courses";
 import CourseDetail from "./pages/dashboard/CourseDetail";
 import Cart from "./pages/dashboard/Cart";
 import MyCourses from "./pages/dashboard/MyCourses";
+import CreateCourse from "./pages/teacher/CreateCourse";
+import Sessions from "./pages/teacher/Sessions";
+import Students from "./pages/admin/Students";
+import Teachers from "./pages/admin/Teachers";
+import Profile from "./pages/settings/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -49,6 +54,33 @@ const App = () => (
                   <MyCourses />
                 </ProtectedRoute>
               } />
+              <Route path="admin/students" element={
+                <ProtectedRoute allowedRoles={['ADMIN_STUDENT', 'SUPERADMIN']}>
+                  <Students />
+                </ProtectedRoute>
+              } />
+              <Route path="admin/teachers" element={
+                <ProtectedRoute allowedRoles={['ADMIN_TEACHER', 'SUPERADMIN']}>
+                  <Teachers />
+                </ProtectedRoute>
+              } />
+            </Route>
+
+            <Route path="/teacher" element={
+              <ProtectedRoute allowedRoles={['TEACHER']}>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }>
+              <Route path="create-course" element={<CreateCourse />} />
+              <Route path="sessions" element={<Sessions />} />
+            </Route>
+
+            <Route path="/settings" element={
+              <ProtectedRoute>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }>
+              <Route path="profile" element={<Profile />} />
             </Route>
 
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -87,10 +87,12 @@ export default function Login() {
             </div>
 
             <div className="rounded-lg bg-muted p-3 text-xs text-muted-foreground">
-              <p className="font-medium mb-1">Demo accounts:</p>
+              <p className="font-medium mb-1">Demo accounts (password: any):</p>
               <p>Student: student@demo.com</p>
               <p>Teacher: teacher@demo.com</p>
-              <p>Admin: admin@demo.com</p>
+              <p>Admin (Student): admin-student@demo.com</p>
+              <p>Admin (Teacher): admin-teacher@demo.com</p>
+              <p>SuperAdmin: superadmin@demo.com</p>
             </div>
           </CardContent>
 

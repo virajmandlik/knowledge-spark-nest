@@ -45,11 +45,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string, password: string) => {
     try {
       // TODO: Replace with actual API call
+      let role: User['role'] = 'STUDENT';
+      
+      // Demo account role mapping
+      if (email === 'superadmin@demo.com') {
+        role = 'SUPERADMIN';
+      } else if (email === 'admin-teacher@demo.com') {
+        role = 'ADMIN_TEACHER';
+      } else if (email === 'admin-student@demo.com') {
+        role = 'ADMIN_STUDENT';
+      } else if (email === 'teacher@demo.com') {
+        role = 'TEACHER';
+      } else if (email === 'student@demo.com') {
+        role = 'STUDENT';
+      }
+      
       const mockUser: User = {
         id: '1',
         email,
         name: email.split('@')[0],
-        role: email.includes('admin') ? 'SUPERADMIN' : email.includes('teacher') ? 'TEACHER' : 'STUDENT',
+        role,
         createdAt: new Date().toISOString(),
       };
       
